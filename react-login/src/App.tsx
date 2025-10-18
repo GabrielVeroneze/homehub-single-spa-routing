@@ -1,5 +1,11 @@
+import LoginBox from './components/LoginBox'
+
 const App = () => {
-    return <section>Hello World!</section>
+    return (
+        <div>
+            <LoginBox />
+        </div>
+    )
 }
 
 export default App
