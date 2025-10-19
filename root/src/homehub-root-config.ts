@@ -7,7 +7,7 @@ registerApplication({
             /* webpackIgnore: true */ // @ts-ignore-next
             '@homehub/react-navbar'
         ),
-    activeWhen: ['/'],
+    activeWhen: ['/dashboard/:id/', '/dashboard/#/'],
 })
 
 registerApplication({
@@ -17,7 +17,7 @@ registerApplication({
             /* webpackIgnore: true */ // @ts-ignore-next
             '@homehub/react-dashboard'
         ),
-    activeWhen: ['/'],
+    activeWhen: ['/dashboard/:id/', '/dashboard/#/'],
 })
 
 registerApplication({
@@ -27,7 +27,7 @@ registerApplication({
             /* webpackIgnore: true */ // @ts-ignore-next
             '@homehub/react-login'
         ),
-    activeWhen: ['/'],
+    activeWhen: (location) => location.pathname === '/',
 })
 
 start({
