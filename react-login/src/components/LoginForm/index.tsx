@@ -8,10 +8,15 @@ import {
     TextField,
 } from '@mui/material'
 
-const LoginForm = () => {
-    const { register, handleSubmit } = useForm()
+type FormData = {
+    email: string
+    password: string
+}
 
-    const onSubmit = (data) => {
+const LoginForm = () => {
+    const { register, handleSubmit } = useForm<FormData>()
+
+    const onSubmit = (data: FormData) => {
         console.log(data)
     }
 
@@ -28,8 +33,18 @@ const LoginForm = () => {
             }}
             onSubmit={handleSubmit(onSubmit)}
         >
-            <TextField id="email" label="Email" variant="standard" />
-            <TextField id="password" label="Password" variant="standard" />
+            <TextField
+                id="email"
+                label="Email"
+                variant="standard"
+                {...register('email')}
+            />
+            <TextField
+                id="password"
+                label="Password"
+                variant="standard"
+                {...register('password')}
+            />
             <FormControlLabel
                 label="Lembrar-me"
                 control={
