@@ -1,3 +1,4 @@
+import { useForm } from 'react-hook-form'
 import {
     Box,
     Button,
@@ -8,6 +9,12 @@ import {
 } from '@mui/material'
 
 const LoginForm = () => {
+    const { register, handleSubmit } = useForm()
+
+    const onSubmit = (data) => {
+        console.log(data)
+    }
+
     return (
         <Box
             component="form"
@@ -19,6 +26,7 @@ const LoginForm = () => {
                 pb: 2,
                 width: '100%',
             }}
+            onSubmit={handleSubmit(onSubmit)}
         >
             <TextField id="email" label="Email" variant="standard" />
             <TextField id="password" label="Password" variant="standard" />
@@ -41,6 +49,7 @@ const LoginForm = () => {
             <Button
                 variant="contained"
                 size="large"
+                type="submit"
                 sx={{ bgcolor: '#9C27B0' }}
             >
                 Login
