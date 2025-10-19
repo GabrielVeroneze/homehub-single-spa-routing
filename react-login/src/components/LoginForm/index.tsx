@@ -14,7 +14,11 @@ type FormData = {
 }
 
 const LoginForm = () => {
-    const { register, handleSubmit } = useForm<FormData>()
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm<FormData>()
 
     const onSubmit = (data: FormData) => {
         console.log(data)
@@ -37,13 +41,25 @@ const LoginForm = () => {
                 id="email"
                 label="Email"
                 variant="standard"
-                {...register('email')}
+                error={!!errors.email}
+                helperText={errors.email?.message}
+                {...register('email', {
+                    required: 'O e-mail é obrigatório.',
+                    pattern: {
+                        value: /\S+@\S+\.\S+/,
+                        message: 'E-mail inválido.',
+                    },
+                })}
             />
             <TextField
                 id="password"
                 label="Password"
                 variant="standard"
-                {...register('password')}
+                error={!!errors.password}
+                helperText={errors.password?.message}
+                {...register('password', {
+                    required: 'A senha é obrigatória.',
+                })}
             />
             <FormControlLabel
                 label="Lembrar-me"
