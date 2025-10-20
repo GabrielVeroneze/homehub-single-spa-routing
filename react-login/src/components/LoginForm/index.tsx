@@ -21,7 +21,9 @@ const LoginForm = () => {
     } = useForm<FormData>()
 
     const onSubmit = (data: FormData) => {
-        console.log(data)
+        const authId = crypto.randomUUID()
+
+        location.replace(`/dashboard/${authId}/`)
     }
 
     return (
