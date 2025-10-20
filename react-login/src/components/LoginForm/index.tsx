@@ -23,6 +23,8 @@ const LoginForm = () => {
     const onSubmit = (data: FormData) => {
         const authId = crypto.randomUUID()
 
+        localStorage.setItem('auth', JSON.stringify(data))
+
         location.replace(`/dashboard/${authId}/`)
     }
 
