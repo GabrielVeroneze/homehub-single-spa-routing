@@ -59,6 +59,7 @@ const LoginForm = () => {
                 id="password"
                 label="Password"
                 variant="standard"
+                type="password"
                 error={!!errors.password}
                 helperText={errors.password?.message}
                 {...register('password', {
