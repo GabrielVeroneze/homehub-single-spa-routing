@@ -1,9 +1,24 @@
+import { useEffect, useState } from 'react'
 import { Box, Grid } from '@mui/material'
 import HeroCard from './components/HeroCard'
 import UsersCard from './components/UsersCard'
 import WaterCard from './components/WaterCard'
 
 const App = () => {
+    const [authInfo, setAuthInfo] = useState()
+
+    useEffect(() => {
+        const auth = localStorage.getItem('auth')
+
+        if (!auth) {
+            location.replace('/')
+            return
+        }
+
+        setAuthInfo(JSON.parse(auth))
+        console.log('authInfo', auth)
+    }, [])
+
     return (
         <div id="single-spa-application:react-dashboard">
             <Box
