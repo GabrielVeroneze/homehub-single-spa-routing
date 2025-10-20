@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
     AppBar,
     Badge,
@@ -16,6 +16,7 @@ import {
     MenuItem,
     Toolbar,
 } from '@mui/material'
+import { AuthInfo } from './types/AuthInfo'
 import AccountCircle from '@mui/icons-material/AccountCircle'
 import NotificationsIcon from '@mui/icons-material/Notifications'
 import SettingsIcon from '@mui/icons-material/Settings'
@@ -28,6 +29,19 @@ import HomeHubLogo from './assets/home-hub.png'
 
 const App = () => {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
+    const [authInfo, setAuthInfo] = useState<AuthInfo>()
+
+    useEffect(() => {
+        const auth = localStorage.getItem('auth')
+
+        if (!auth) {
+            location.replace('/')
+            return
+        }
+
+        setAuthInfo(JSON.parse(auth))
+    }, [])
+
     const isMenuOpen = Boolean(anchorEl)
 
     const [open, setOpen] = useState<boolean>(false)
@@ -102,7 +116,7 @@ const App = () => {
             open={isMenuOpen}
             onClose={handleMenuClose}
         >
-            <MenuItem onClick={handleMenuClose}>Usuário</MenuItem>
+            <MenuItem onClick={handleMenuClose}>{authInfo?.email}</MenuItem>
             <Divider />
             <MenuItem onClick={handleMenuClose}>
                 <ListItemIcon>
